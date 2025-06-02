@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageGeneratorController;
+use App\Http\Controllers\Product\GenerateQRController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/image', [ImageGeneratorController::class, 'generate']);
+Route::post('/generate-qr', [GenerateQRController::class, 'generateQR'])->name('generate.qr');
