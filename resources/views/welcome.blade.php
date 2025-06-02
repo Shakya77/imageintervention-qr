@@ -18,7 +18,7 @@
     <div class="container">
         <h2 class="mb-4">Generate QR Code for Product</h2>
 
-        <form action="{{ route('generate.qr') }}" method="POST">
+        <form id="qrForm">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Product Name:</label>
@@ -33,6 +33,29 @@
             <button type="submit" class="btn btn-primary">Generate QR</button>
         </form>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#qrForm').on('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: "{{ route('generate.qr') }}",
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Redirect to the QR code display page
+                        window.location.reload();
+                    },
+                    error: function(xhr) {
+                        alert('Error generating QR code. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

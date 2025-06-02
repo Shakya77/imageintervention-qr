@@ -12,11 +12,6 @@ class GenerateQRController extends Controller
 {
     public function generateQR()
     {
-        $validator = Validator::make(request()->all(), [
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-        ]);
-
         $name = request()->input('name');
         $price = request()->input('price');
 
@@ -32,10 +27,9 @@ class GenerateQRController extends Controller
 
         $qrUrl = asset("storage/qrcodes/{$fileName}");
 
-        return view('welcome', [
-            'productName' => $name,
-            'price' => $price,
-            'qrUrl' => $qrUrl,
+        return response()->json([
+            'message' => 'QR code generated successfully',
+            'qr_code_url' => $qrUrl,
         ]);
     }
 }
