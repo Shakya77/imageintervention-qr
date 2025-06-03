@@ -188,4 +188,6 @@ return [
 
     ])->toArray(),
 
+    'domain' => env('Domain', 'default'),
+
 ];

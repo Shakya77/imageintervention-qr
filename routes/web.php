@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageGeneratorController;
 use App\Http\Controllers\Product\GenerateQRController;
+use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/image', [ImageGeneratorController::class, 'generate']);
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+
 Route::post('/generate-qr', [GenerateQRController::class, 'generateQR'])->name('generate.qr');

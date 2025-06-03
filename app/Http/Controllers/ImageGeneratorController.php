@@ -14,10 +14,11 @@ class ImageGeneratorController extends Controller
         $title = $request->get('text', 'Product Name');
         $color = $request->get('color', '#eaeaea');
         $img = Image::canvas($width, $height, $color);
+        $fs= request()->get('size', 24);
 
-        $img->text(strtoupper($title), $width / 2, $height / 2, function ($font) {
+        $img->text(strtoupper($title), $width / 2, $height / 2, function ($font) use ($fs) {
             $font->file(public_path('fonts/OpenSans-Italic2.ttf')); // Or comment this line to use default
-            $font->size(24);
+            $font->size($fs);
             $font->color('#333333');
             $font->align('center');
             $font->valign('center');

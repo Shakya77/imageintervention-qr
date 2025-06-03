@@ -25,11 +25,8 @@ class GenerateQRController extends Controller
 
         Storage::disk('public')->put("qrcodes/{$fileName}", $qrImage);
 
-        $qrUrl = asset("storage/qrcodes/{$fileName}");
-
         return response()->json([
             'message' => 'QR code generated successfully',
-            'qr_code_url' => $qrUrl,
         ]);
     }
 }
